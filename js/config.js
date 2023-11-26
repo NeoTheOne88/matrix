@@ -80,10 +80,12 @@ const defaults = {
 	isolateGlint: false, // Whether the "glint"— highlights on certain symbols in the font— should appear
 	glintColor: hsl(0, 0, 1), // The color of the glint
 	glintIntensity: 1, // The intensity of the glint
-	volumetric: false, // A mode where the raindrops appear in perspective
+	//volumetric: false, // A mode where the raindrops appear in perspective
+	volumetric: true, // A mode where the raindrops appear in perspective
 	animationSpeed: 1, // The global rate that all animations progress
 	fps: 60, // The target frame rate (frames per second) of the effect
-	forwardSpeed: 0.25, // The speed volumetric rain approaches the eye
+	//forwardSpeed: 0.25, // The speed volumetric rain approaches the eye
+	forwardSpeed: 0.15, // The speed volumetric rain approaches the eye
 	bloomStrength: 0.7, // The intensity of the bloom
 	bloomSize: 0.4, // The amount the bloom calculation is scaled
 	highPassThreshold: 0.1, // The minimum brightness that is still blurred
@@ -107,8 +109,10 @@ const defaults = {
 	rippleThickness: 0.2, // The thickness of the ripple effect
 	rippleScale: 30, // The size of the ripple effect
 	rippleSpeed: 0.2, // The rate at which the ripple effect progresses
-	numColumns: 80, // The maximum dimension of the glyph grid
-	density: 1, // In volumetric mode, the number of actual columns compared to the grid
+	//numColumns: 80, // The maximum dimension of the glyph grid
+	//density: 1, // In volumetric mode, the number of actual columns compared to the grid
+	numColumns: 205, // The maximum dimension of the glyph grid
+	density: 3, // In volumetric mode, the number of actual columns compared to the grid
 	palette: [
 		// The color palette that glyph brightness is color mapped to
 		{ color: hsl(0.3, 0.9, 0.0), at: 0.0 },
@@ -546,7 +550,8 @@ export default (urlParams) => {
 		}
 	}
 
-	const version = validParams.version in versions ? versions[validParams.version] : versions.classic;
+	//const version = validParams.version in versions ? versions[validParams.version] : versions.classic;
+	const version = validParams.version in versions ? versions[validParams.version] : versions.updated;
 	const fontName = [validParams.font, version.font, defaults.font].find((name) => name in fonts);
 	const font = fonts[fontName];
 
